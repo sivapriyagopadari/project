@@ -1,0 +1,9 @@
+class siva1
+{
+  public static void main(String[]args)
+  {
+   //displayInfo()
+   //showInfo()
+  System.out.println("bangaru")
+  }
+}
