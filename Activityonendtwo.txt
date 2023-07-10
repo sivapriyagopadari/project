@@ -1,0 +1,116 @@
+package emp;
+
+public class Innings {
+	private String teamname;
+	private String inningsname;
+	private int runs;
+	public String getTeamname() {
+		return teamname;
+	}
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
+	}
+	public String getInningsname() {
+		return inningsname;
+	}
+	public void setInningsname(String inningsname) {
+		this.inningsname = inningsname;
+	}
+	public int getRuns() {
+		return runs;
+	}
+	public void setRuns(int runs) {
+		this.runs = runs;
+	}
+	@Override
+	public String toString() {
+		return "Innings [teamname=" + teamname + ", inningsname=" + inningsname + ", runs=" + runs + "]";
+	}
+	
+		
+	
+
+}
+
+
+package emp;
+
+import java.util.Scanner;
+
+public class Employeeinning {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter the team name:");
+		String a=s.next();
+		System.out.println("Enter session:");
+		String b=s.next();
+		System.out.println("Enter runs:");
+		int c=s.nextInt();
+		Innings i=new Innings();
+		i.setTeamname(a);
+		i.setRuns(c);
+		System.out.println(i);
+		System.out.println("Teamname"+i.getTeamname());
+		System.out.println("runs"+i.getRuns());
+
+	}
+
+}
+
+
+
+second
+=================
+package emp;
+
+public class Employee {
+	private String name;
+	private String address;
+	private String mobile;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", address=" + address + ", mobile=" + mobile + "]";
+	}
+	
+		
+
+}
+
+package emp;
+
+public class Employeemain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Employee e= new Employee();
+		e.setName("Siva");
+		e.setAddress("hyd");
+		e.setMobile("9876543321");
+		//System.out.println(e);
+		System.out.println("Employee Details");
+System.out.println("name:"+e.getName());
+System.out.println("address:"+e.getAddress());
+System.out.println("mobile:"+e.getMobile());
+	}
+
+}
