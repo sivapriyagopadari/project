@@ -1,0 +1,209 @@
+activity7
+1.
+--------------
+package Activity7;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Player {
+    private String name;
+    private int age;
+    private String country;
+
+    public Player(String name, int age, String country) {
+        this.name = name;
+        this.age = age;
+        this.country = country;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get player details from user
+        System.out.println("Enter player name:");
+        String name = scanner.nextLine();
+        System.out.println("Enter player age:");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter player country:");
+        String country = scanner.nextLine();
+
+        Player player = new Player(name, age, country);
+        List<String> details = new ArrayList<>();
+        details.add(player.getName());
+        details.add(String.valueOf(player.getAge()));
+        details.add(player.getCountry());
+
+        // Print player details before adding skill
+        System.out.println("Player details:");
+        for (String detail : details) {
+            System.out.println(detail);
+        }
+
+        // Get player skill and position to insert it
+        System.out.println("Enter player skill:");
+        String skill = scanner.nextLine();
+        System.out.println("Enter position to insert skill:");
+        int position = scanner.nextInt();
+        scanner.nextLine();
+
+        // Add player skill at specified position
+        details.add(position, skill);
+
+        // Print player details after adding skill
+        System.out.println("Player details with skill:");
+        for (String detail : details) {
+            System.out.println(detail);
+        }
+
+        // Get position of detail to be removed
+        System.out.println("Enter position of detail to remove:");
+        int removePosition = scanner.nextInt();
+        scanner.nextLine();
+
+        // Remove detail at specified position
+        String removedDetail = details.remove(removePosition);
+
+        // Print player details after removing detail
+        System.out.println("Player details after removing detail:");
+        for (String detail : details) {
+            System.out.println(detail);
+        }
+    }
+}
+
+
+2.
+---------------------------------------
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Get team names
+        List<String> teamRankings = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Enter team name for position " + (i + 1) + ":");
+            String teamName = scanner.nextLine();
+            teamRankings.add(teamName);
+        }
+
+        // Print original team rankings
+        System.out.println("Original team rankings:");
+        for (int i = 0; i < teamRankings.size(); i++) {
+            System.out.println((i + 1) + ". " + teamRankings.get(i));
+        }
+
+        // Get swap positions
+        System.out.println("Enter first swap position:");
+        int swapPosition1 = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter second swap position:");
+        int swapPosition2 = scanner.nextInt();
+        scanner.nextLine();
+
+        // Perform swap
+        swapPositions(teamRankings, swapPosition1, swapPosition2);
+
+        // Print predicted team rankings
+        System.out.println("Predicted team rankings:");
+        for (int i = 0; i < teamRankings.size(); i++) {
+            System.out.println((i + 1) + ". " + teamRankings.get(i));
+        }
+    }
+
+    private static void swapPositions(List<String> teamRankings, int position1, int position2) {
+        // Swap the positions of team names in the list
+        String temp = teamRankings.get(position1 - 1);
+        teamRankings.set(position1 - 1, teamRankings.get(position2 - 1));
+        teamRankings.set(position2 - 1, temp);
+    }
+}
+4.
+-----------
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Get the number of matches played by Gayle
+        int n = scanner.nextInt();
+        
+        int fiftyCount = 0;
+        int hundredCount = 0;
+        
+        // Iterate over the scores of each match
+        for (int i = 0; i < n; i++) {
+            int score = scanner.nextInt();
+            
+            // Check if the score is a 50 or 100
+            if (score >= 50 && score < 100) {
+                fiftyCount++;
+            } else if (score >= 100) {
+                hundredCount++;
+            }
+        }
+        
+        // Print the counts of 50s and 100s
+        System.out.println(fiftyCount);
+        System.out.println(hundredCount);
+    }
+}
+
+3.
+----------------
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Get list of top scorers for season 13
+        List<String> season13TopScorers = new ArrayList<>();
+        System.out.println("Enter the names of top scorers for IPL season 13:");
+        for (int i = 0; i < 5; i++) {
+            String playerName = scanner.nextLine();
+            season13TopScorers.add(playerName);
+        }
+
+        // Get list of top scorers for season 12
+        List<String> season12TopScorers = new ArrayList<>();
+        System.out.println("Enter the names of top scorers for IPL season 12:");
+        for (int i = 0; i < 5; i++) {
+            String playerName = scanner.nextLine();
+            season12TopScorers.add(playerName);
+        }
+        
+        // Find common players in both seasons
+        List<String> commonPlayers = new ArrayList<>(season13TopScorers);
+        commonPlayers.retainAll(season12TopScorers);
+
+        // Print common players
+        System.out.println("Common players in both IPL seasons:");
+        for (String playerName : commonPlayers) {
+            System.out.println(playerName);
+        }
+    }
+}
