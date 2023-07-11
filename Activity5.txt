@@ -1,0 +1,113 @@
+exception activity5:-
+1.
+--------
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("Enter total runs scored:");
+            int totalRuns = Integer.parseInt(reader.readLine().trim());
+
+            System.out.println("Enter total overs faced:");
+            int totalOvers = Integer.parseInt(reader.readLine().trim());
+
+            if (totalOvers == 0) {
+                throw new ArithmeticException();
+            }
+
+            double runRate = (double) totalRuns / totalOvers;
+
+            System.out.println("Run Rate: " + runRate);
+        }
+        catch (ArithmeticException | NumberFormatException e) {
+            System.out.println("Exception thrown: " + e.getClass().getName());
+        }
+    }
+}
+
+2.
+-----------------
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Enter number of overs:");
+            int numOfOvers = scanner.nextInt();
+            scanner.nextLine();
+
+            if (numOfOvers < 0) {
+                throw new NegativeArraySizeException();
+            }
+
+            int[] runs = new int[numOfOvers];
+
+            for (int i = 0; i < numOfOvers; i++) {
+                System.out.println("Enter runs scored in over " + (i + 1) + ":");
+                runs[i] = scanner.nextInt();
+                scanner.nextLine();
+            }
+
+            System.out.println("Enter over number to display runs:");
+            int overNumber = scanner.nextInt();
+            scanner.nextLine();
+
+            if (overNumber < 1 || overNumber > numOfOvers) {
+                throw new ArrayIndexOutOfBoundsException();
+            }
+
+            System.out.println("Runs scored in over " + overNumber + ": " + runs[overNumber - 1]);
+        }
+        catch (NegativeArraySizeException e) {
+            System.out.println("Exception thrown: " + e.getClass().getName());
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Exception thrown: " + e.getClass().getName());
+        }
+    }
+}
+3.
+----------------
+import java.util.Scanner;
+
+class InvalidAgeRangeException extends Exception {
+    public InvalidAgeRangeException(String message) {
+        super(message);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Enter player name:");
+            String playerName = scanner.nextLine();
+
+            System.out.println("Enter player age:");
+            int playerAge = scanner.nextInt();
+            scanner.nextLine();
+
+            validateAge(playerAge);
+
+            System.out.println("Player name: " + playerName);
+            System.out.println("Player age: " + playerAge);
+        }
+        catch (InvalidAgeRangeException e) {
+            System.out.println("Exception thrown: " + e.getMessage());
+        }
+    }
+
+    public static void validateAge(int age) throws InvalidAgeRangeException {
+        if (age < 19) {
+            throw new InvalidAgeRangeException("Invalid age range. Player should be 19 years and above.");
+        }
+    }
+}
