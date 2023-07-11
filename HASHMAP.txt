@@ -1,0 +1,103 @@
+
+HASMAP:-
+======================================
+import java.util.*;
+
+class Bowler {
+    private String name;
+
+    public Bowler(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+	@Override
+	public String toString() {
+		return "Bowler [name=" + name + "]";
+	}
+    
+}
+
+class Wicket {
+    private String description;
+    private Bowler bowler;
+
+    public Wicket(String description, Bowler bowler) {
+        this.description = description;
+        this.bowler = bowler;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Bowler getBowler() {
+        return bowler;
+    }
+
+    public void setBowler(Bowler bowler) {
+        this.bowler = bowler;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap<String, List<Wicket>> wicketsMap = new HashMap<>();
+
+        String addAnotherPlayer;
+        do {
+            System.out.println("Enter the player name:");
+            String playerName = scanner.nextLine();
+
+            System.out.println("Enter wickets separated by \"|\" symbol:");
+            String wicketsInput = scanner.next();
+            String[] wickets = wicketsInput.split("\\|");
+
+            List<Wicket> wicketList = new ArrayList<>();
+            for (String wicket : wickets) {
+                Bowler bowler = new Bowler(playerName);
+                Wicket wicketObj = new Wicket(wicket, bowler);
+                wicketList.add(wicketObj);
+            }
+            wicketsMap.put(playerName, wicketList);
+
+            System.out.println("Do you want to add another player? (yes/no)");
+            addAnotherPlayer = scanner.nextLine();
+        } while (addAnotherPlayer.equalsIgnoreCase("yes"));
+
+        String searchAnotherPlayer;
+        do {
+            System.out.println("Enter the player name to search:");
+            String searchPlayer = scanner.nextLine();
+
+            if (wicketsMap.containsKey(searchPlayer)) {
+                List<Wicket> wicketList = wicketsMap.get(searchPlayer);
+                System.out.println("Player Name: " + searchPlayer);
+                System.out.println("Wickets:");
+
+                for (Wicket wicket : wicketList) {
+                    System.out.println(wicket.getDescription());
+                }
+            } else {
+                System.out.println("No player found with the name " + searchPlayer);
+            }
+
+            System.out.println("Do you want to search another player? (yes/no)");
+            searchAnotherPlayer = scanner.nextLine();
+        } while (searchAnotherPlayer.equalsIgnoreCase("yes"));
+
+        scanner.close();
+    }
+}
