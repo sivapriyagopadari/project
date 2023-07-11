@@ -1,0 +1,173 @@
+inheritance:-
+================================
+1.
+-------------
+package inheritance;
+
+class Vehicle {
+	  protected String make;
+	  protected String vehicleNumber;
+	  protected String fuelType;
+	  protected Integer fuelCapacity;
+	  protected Integer cc;
+	  
+	  public Vehicle(String make, String vehicleNumber, String fuelType, Integer fuelCapacity, Integer cc) {
+	    this.make = make;
+	    this.vehicleNumber = vehicleNumber;
+	    this.fuelType = fuelType;
+	    this.fuelCapacity = fuelCapacity;
+	    this.cc = cc;
+	  }
+	  
+	  public void displayMake() {
+	    System.out.println("Make: " + make);
+	  }
+	  
+	  public void displayBasicInfo() {
+	    System.out.println("Vehicle Number: " + vehicleNumber);
+	    System.out.println("Fuel Type: " + fuelType);
+	    System.out.println("Fuel Capacity: " + fuelCapacity + " liters");
+	    System.out.println("CC: " + cc + " cc");
+	  }
+	  
+	  public void displayDetailInfo() {
+	    // Empty method
+	  }
+	}
+
+	class TwoWheeler extends Vehicle {
+	  private Boolean kickStartAvailable;
+	  
+	  public TwoWheeler(String make, String vehicleNumber, String fuelType, Integer fuelCapacity, Integer cc, Boolean kickStartAvailable) {
+	    super(make, vehicleNumber, fuelType, fuelCapacity, cc);
+	    this.kickStartAvailable = kickStartAvailable;
+	  }
+	  
+	  public void displayDetailInfo() {
+	    System.out.println("Kick Start Available: " + kickStartAvailable);
+	  }
+	}
+
+	class FourWheeler extends Vehicle {
+	  private String audioSystem;
+	  private Integer numberOfDoors;
+	  
+	  public FourWheeler(String make, String vehicleNumber, String fuelType, Integer fuelCapacity, Integer cc, String audioSystem, Integer numberOfDoors) {
+	    super(make, vehicleNumber, fuelType, fuelCapacity, cc);
+	    this.audioSystem = audioSystem;
+	    this.numberOfDoors = numberOfDoors;
+	  }
+	  
+	  public void displayDetailInfo() {
+	    System.out.println("Audio System: " + audioSystem);
+	    System.out.println("Number of Doors: " + numberOfDoors);
+	  }
+	}
+
+	public class Main {
+	  public static void main(String[] args) {
+	    TwoWheeler twoWheeler = new TwoWheeler("Honda", "12345", "Petrol", 10, 150, true);
+	    twoWheeler.displayMake();
+	    twoWheeler.displayBasicInfo();
+	    twoWheeler.displayDetailInfo();
+	    
+	    FourWheeler fourWheeler = new FourWheeler("Toyota", "67890", "Petrol", 40, 2000, "Sony", 4);
+	    fourWheeler.displayMake();
+	    fourWheeler.displayBasicInfo();
+	    fourWheeler.displayDetailInfo();
+	  }
+	}
+
+
+
+
+
+2.
+-----------
+package Activity9;
+
+class HotelRoom {
+	  protected String hotelName;
+	  protected Integer numberOfSqFeet;
+	  protected Boolean hasTV;
+	  protected Boolean hasWifi;
+	  
+	  public HotelRoom(String hotelName, Integer numberOfSqFeet, Boolean hasTV, Boolean hasWifi) {
+	    this.hotelName = hotelName;
+	    this.numberOfSqFeet = numberOfSqFeet;
+	    this.hasTV = hasTV;
+	    this.hasWifi = hasWifi;
+	  }
+	  
+	  public Integer calculateTariff() {
+	    return numberOfSqFeet * getRatePerSqFeet();
+	  }
+	  
+	  public Integer getRatePerSqFeet() {
+	    return 0;
+	  }
+	}
+
+	class DeluxeRoom extends HotelRoom {
+	  protected Integer ratePerSqFeet;
+	  
+	  public DeluxeRoom(String hotelName, Integer numberOfSqFeet, Boolean hasTV, Boolean hasWifi) {
+	    super(hotelName, numberOfSqFeet, hasTV, hasWifi);
+	    ratePerSqFeet = 10;
+	  }
+	  
+	  public Integer getRatePerSqFeet() {
+	    return hasWifi ? ratePerSqFeet + 2 : ratePerSqFeet;
+	  }
+	}
+
+	class DeluxeACRoom extends DeluxeRoom {
+	  public DeluxeACRoom(String hotelName, Integer numberOfSqFeet, Boolean hasTV, Boolean hasWifi) {
+	    super(hotelName, numberOfSqFeet, hasTV, hasWifi);
+	  }
+	}
+
+	class SuiteACRoom extends HotelRoom {
+	  private Integer ratePerSqFeet;
+	  
+	  public SuiteACRoom(String hotelName, Integer numberOfSqFeet, Boolean hasTV, Boolean hasWifi) {
+	    super(hotelName, numberOfSqFeet, hasTV, hasWifi);
+	    ratePerSqFeet = 15;
+	  }
+	  
+	  public Integer getRatePerSqFeet() {
+	    return hasWifi ? ratePerSqFeet + 2 : ratePerSqFeet;
+	  }
+	}
+
+	public class Main {
+	  public static void main(String[] args) {
+	    HotelRoom room1 = new HotelRoom("Marriott", 500, true, false);
+	    System.out.println("Hotel Name: " + room1.hotelName);
+	    System.out.println("Number of Sq Feet: " + room1.numberOfSqFeet);
+	    System.out.println("Has TV: " + room1.hasTV);
+	    System.out.println("Has Wifi: " + room1.hasWifi);
+	    System.out.println("Tariff: " + room1.calculateTariff());
+	    
+	    DeluxeRoom room2 = new DeluxeRoom("Hilton", 600, true, false);
+	    System.out.println("Hotel Name: " + room2.hotelName);
+	    System.out.println("Number of Sq Feet: " + room2.numberOfSqFeet);
+	    System.out.println("Has TV: " + room2.hasTV);
+	    System.out.println("Has Wifi: " + room2.hasWifi);
+	    System.out.println("Tariff: " + room2.calculateTariff());
+	    
+	    DeluxeACRoom room3 = new DeluxeACRoom("Hyatt", 700, true,false);
+	    System.out.println("Hotel Name: " + room3.hotelName);
+	    System.out.println("Number of Sq Feet: " + room3.numberOfSqFeet);
+	    System.out.println("Has TV: " + room3.hasTV);
+	    System.out.println("Has Wifi: " + room3.hasWifi);
+	    System.out.println("Tariff: " + room3.calculateTariff());
+	    
+	    SuiteACRoom room4 = new SuiteACRoom("Sheraton", 800, true, false);
+	    System.out.println("Hotel Name: " + room4.hotelName);
+	    System.out.println("Number of Sq Feet: " + room4.numberOfSqFeet);
+	    System.out.println("Has TV: " + room4.hasTV);
+	    System.out.println("Has Wifi: " + room4.hasWifi);
+	    System.out.println("Tariff: " + room4.calculateTariff());
+	  }
+	}
